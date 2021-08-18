@@ -7,6 +7,8 @@ import com.inventory.pos.request.UpdateProductCategoryRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 public class ProductCategoryService {
     @Autowired
@@ -24,4 +26,12 @@ public class ProductCategoryService {
         productCategoryRepository.save(productCategory);
         return productCategory;
     }
+
+    public String deleteProductCategory(Long id){
+        ProductCategory category=productCategoryRepository.findById(id).get();
+        String productCategoryName=category.getCategoryName();
+        productCategoryRepository.deleteById(id);
+        return productCategoryName;
+    }
+
 }
