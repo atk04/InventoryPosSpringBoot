@@ -1,5 +1,6 @@
 package com.inventory.pos.config;
 
+import com.inventory.pos.entity.Product;
 import com.inventory.pos.entity.ProductCategory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -11,7 +12,7 @@ public class RepositoryConfig implements RepositoryRestConfigurer {
     public RepositoryRestConfigurer repositoryRestConfigurer()
     {
         return RepositoryRestConfigurer.withConfig(config -> {
-            config.exposeIdsFor(ProductCategory.class);
+            config.exposeIdsFor(ProductCategory.class, Product.class);
         });
     }
 }

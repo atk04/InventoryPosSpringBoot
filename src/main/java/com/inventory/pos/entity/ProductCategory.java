@@ -6,6 +6,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name="product_category")
@@ -20,6 +22,9 @@ public class ProductCategory {
 
     @Column(name="category_name")
     private String categoryName;
+
+    @OneToMany(cascade = CascadeType.ALL,mappedBy = "productCategory")
+    private Set<Product> products=new HashSet<>();
 
     public ProductCategory(CreateProductCategoryRequest createProductCategoryRequest){
         this.categoryName=createProductCategoryRequest.getCategoryName();
