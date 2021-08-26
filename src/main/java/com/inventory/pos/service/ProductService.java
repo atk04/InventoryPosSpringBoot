@@ -19,4 +19,11 @@ public class ProductService {
         productRepository.save(product);
         return product;
     }
+
+    public String deleteProduct(Long id) {
+        Product product=productRepository.findById(id).get();
+        String productName=product.getName();
+        productRepository.deleteById(id);
+        return productName;
+    }
 }
