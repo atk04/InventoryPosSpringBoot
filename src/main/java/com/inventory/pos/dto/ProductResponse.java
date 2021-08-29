@@ -15,6 +15,9 @@ public class ProductResponse {
     private BigDecimal salePrice;
     private int stock;
     private String description;
+    private String imageName;
+    private String imageUrl;
+
 
     public ProductResponse(Product product){
         this.id=product.getId();
@@ -23,5 +26,7 @@ public class ProductResponse {
         this.salePrice=product.getSalePrice();
         this.stock=product.getStock();
         this.description=product.getDescription();
+        this.imageName=product.getImageName();
+        this.imageUrl=product.getImageUrl();
     }
 }

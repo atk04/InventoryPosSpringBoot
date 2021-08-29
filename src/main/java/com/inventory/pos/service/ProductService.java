@@ -1,5 +1,6 @@
 package com.inventory.pos.service;
 
+import com.inventory.pos.dao.ProductCategoryRepository;
 import com.inventory.pos.dao.ProductRepository;
 import com.inventory.pos.entity.Product;
 import com.inventory.pos.entity.ProductCategory;
@@ -7,10 +8,16 @@ import com.inventory.pos.request.CreateProductRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.Optional;
+
 @Service
 public class ProductService {
     @Autowired
     ProductRepository productRepository;
+
+    @Autowired
+    ProductCategoryRepository productCategoryRepository;
 
     public Product createProduct(CreateProductRequest createProductRequest){
         ProductCategory productCategory=createProductRequest.getCategory();
@@ -25,5 +32,20 @@ public class ProductService {
         String productName=product.getName();
         productRepository.deleteById(id);
         return productName;
+    }
+
+    public List<Product> getAllProduct(){
+
+        return productRepository.findAll();
+
+    }
+
+    public  List<Product>getAllProductByCategoryId(Long id){
+        return productRepository.findProductByProductCategoryId(id);
+    }
+
+    public Optional<ProductCategory>getAllProductCategoryById(Long id){
+        Optional<ProductCategory> category= productCategoryRepository.findById(id);
+        return category;
     }
 }
