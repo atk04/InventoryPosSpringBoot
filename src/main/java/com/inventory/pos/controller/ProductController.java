@@ -56,7 +56,7 @@ public class ProductController {
 
         if (getAllProductByCategory.isEmpty()) {
             productGeneratedId = "0";
-            productName = createProductRequest.getProduct().getName() + productCodePrefix + codeDigit + productGeneratedId+".png";
+            productName = createProductRequest.getProduct().getName() + productCodePrefix + codeDigit + productGeneratedId+".jpg";
         } else {
             for (int i = 0; i < getAllProductByCategory.size(); i++) {
                 productName = getAllProductByCategory.get(i).getImageName();
@@ -73,31 +73,31 @@ public class ProductController {
 
         if (removeZeroString.length() == 1) {
             idCount = Integer.parseInt((removeZeroString)) + 1;
-            createProductRequest.getProduct().setImageName(categoryNameForProductImage + productCodePrefix + codeDigit + idCount + ".png");
+            createProductRequest.getProduct().setImageName(categoryNameForProductImage + productCodePrefix + codeDigit + idCount + ".jpg");
         }
         if (removeZeroString.length() == 2) {
             idCount = Integer.parseInt((removeZeroString)) + 1;
-            createProductRequest.getProduct().setImageName(categoryNameForProductImage + productCodePrefix + codeDigit.substring(0) + idCount + ".png");
+            createProductRequest.getProduct().setImageName(categoryNameForProductImage + productCodePrefix + codeDigit.substring(0) + idCount + ".jpg");
         }
         if (removeZeroString.length() == 3) {
             idCount = Integer.parseInt((removeZeroString)) + 1;
-            createProductRequest.getProduct().setImageName(categoryNameForProductImage + productCodePrefix + codeDigit.substring(1) + idCount + ".png");
+            createProductRequest.getProduct().setImageName(categoryNameForProductImage + productCodePrefix + codeDigit.substring(1) + idCount + ".jpg");
         }
         if (removeZeroString.length() == 4) {
             idCount = Integer.parseInt((removeZeroString)) + 1;
-            createProductRequest.getProduct().setImageName(categoryNameForProductImage + productCodePrefix + codeDigit.substring(2) + idCount + ".png");
+            createProductRequest.getProduct().setImageName(categoryNameForProductImage + productCodePrefix + codeDigit.substring(2) + idCount + ".jpg");
         }
         if (removeZeroString.length() == 5) {
             idCount = Integer.parseInt((removeZeroString)) + 1;
-            createProductRequest.getProduct().setImageName(categoryNameForProductImage + productCodePrefix + codeDigit.substring(3) + idCount + ".png");
+            createProductRequest.getProduct().setImageName(categoryNameForProductImage + productCodePrefix + codeDigit.substring(3) + idCount + ".jpg");
         }
         if (removeZeroString.length() == 6) {
             idCount = Integer.parseInt((removeZeroString)) + 1;
-            createProductRequest.getProduct().setImageName(categoryNameForProductImage + productCodePrefix + codeDigit.substring(4) + idCount + ".png");
+            createProductRequest.getProduct().setImageName(categoryNameForProductImage + productCodePrefix + codeDigit.substring(4) + idCount + ".jpg");
         }
         if (removeZeroString.length() == 7) {
             idCount = Integer.parseInt((removeZeroString)) + 1;
-            createProductRequest.getProduct().setImageName(categoryNameForProductImage + productCodePrefix + codeDigit.substring(5) + idCount + ".png");
+            createProductRequest.getProduct().setImageName(categoryNameForProductImage + productCodePrefix + codeDigit.substring(5) + idCount + ".jpg");
         }
 
 
@@ -138,5 +138,7 @@ public class ProductController {
         return ResponseEntity.ok()
                 .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + file.getFilename() + "\"").body(file);
     }
+
+
 
 }
