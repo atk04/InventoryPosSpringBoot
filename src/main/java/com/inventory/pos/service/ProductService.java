@@ -13,6 +13,10 @@ import java.util.Optional;
 
 @Service
 public class ProductService {
+
+    @Autowired
+    FilesStorageService storageService;
+
     @Autowired
     ProductRepository productRepository;
 
@@ -30,7 +34,9 @@ public class ProductService {
     public String deleteProduct(Long id) {
         Product product=productRepository.findById(id).get();
         String productName=product.getName();
+        String ImageName=product.getImageName();
         productRepository.deleteById(id);
+        storageService.deleteProductImage(ImageName);
         return productName;
     }
 
