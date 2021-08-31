@@ -114,7 +114,7 @@ public class ProductController {
             //createProductRequest.getProduct().setImageName(productName);
             createProductRequest.getProduct().setImageUrl(url);
             Product product = productService.createProduct(createProductRequest);
-            message = createProductRequest.getProduct().getName();
+            message = product.getName();
         } catch (Exception e) {
             message = "Could not upload the file: " + productImage.getOriginalFilename() + "!";
         }
