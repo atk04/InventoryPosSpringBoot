@@ -5,6 +5,7 @@ import com.inventory.pos.dao.ProductRepository;
 import com.inventory.pos.entity.Product;
 import com.inventory.pos.entity.ProductCategory;
 import com.inventory.pos.request.CreateProductRequest;
+import com.inventory.pos.request.UpdateProductRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -30,6 +31,33 @@ public class ProductService {
         productRepository.save(product);
         return product;
     }
+
+    public String updateProduct(UpdateProductRequest updateProductRequest){
+        Long productId=updateProductRequest.getProduct().getId();
+        Optional<Product> product=productRepository.findById(productId);
+        product.get().setName(updateProductRequest.getProduct().getName());
+        product.get().setPurchasePrice(updateProductRequest.getProduct().getPurchasePrice());
+        product.get().setSalePrice(updateProductRequest.getProduct().getSalePrice());
+        product.get().setStock(updateProductRequest.getProduct().getStock());
+        product.get().setDescription(updateProductRequest.getProduct().getDescription());
+        product.get().setImageName(updateProductRequest.getProduct().getImageName());
+        product.get().setImageUrl(updateProductRequest.getProduct().getImageUrl());
+        ProductCategory productCategory=updateProductRequest.getCategory();
+        product.get().setProductCategory(productCategory);
+        String productName=updateProductRequest.getProduct().getName();
+        productRepository.save(product.get());
+        return productName;
+    }
+
+    public void deleteProductImage(Long id){
+        Optional<Product> product=productRepository.findById(id);
+        //delete image from upload directory
+        storageService.deleteProductImage(product.get().getImageName());
+    }
+
+
+
+
 
     public String deleteProduct(Long id) {
         Product product=productRepository.findById(id).get();
