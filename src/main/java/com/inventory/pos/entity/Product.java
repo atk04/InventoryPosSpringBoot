@@ -1,11 +1,14 @@
 package com.inventory.pos.entity;
 
+import com.inventory.pos.request.CreateInvoiceDetailRequest;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name="product")
@@ -42,6 +45,10 @@ public class Product {
     @ManyToOne
     @JoinColumn(name="category_id")
     private ProductCategory productCategory;
+
+    @OneToMany(cascade = CascadeType.ALL,mappedBy = "product")
+    private Set<InvoiceDetail> invoiceDetails=new HashSet<>();
+
 
 
 

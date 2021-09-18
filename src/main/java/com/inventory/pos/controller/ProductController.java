@@ -1,11 +1,13 @@
 package com.inventory.pos.controller;
 
+import com.inventory.pos.dao.ProductRepository;
 import com.inventory.pos.dto.ProductResponse;
 import com.inventory.pos.dto.ResponseMessage;
 import com.inventory.pos.entity.Product;
 import com.inventory.pos.entity.ProductCategory;
 import com.inventory.pos.request.CreateProductRequest;
 import com.inventory.pos.request.UpdateProductRequest;
+import com.inventory.pos.request.UpdateProductStockRequest;
 import com.inventory.pos.service.FilesStorageService;
 import com.inventory.pos.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -218,6 +220,12 @@ public class ProductController {
 
 
 
+        return ResponseEntity.status(HttpStatus.OK).body(new ResponseMessage(message));
+    }
+
+    @PutMapping(value = "updateStock")
+    public ResponseEntity updateProductStock(@RequestBody UpdateProductStockRequest updateProductStockRequest){
+        String message= productService.updateProductStock(updateProductStockRequest);
         return ResponseEntity.status(HttpStatus.OK).body(new ResponseMessage(message));
     }
 
