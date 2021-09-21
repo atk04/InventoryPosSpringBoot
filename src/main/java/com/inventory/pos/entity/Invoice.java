@@ -1,6 +1,7 @@
 package com.inventory.pos.entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.inventory.pos.request.CreateInvoiceDetailRequest;
 import com.inventory.pos.request.CreateInvoiceRequest;
 import lombok.Getter;
@@ -30,7 +31,7 @@ public class Invoice {
     private String customerName;
 
     @Temporal(value = TemporalType.DATE)
-    @JsonFormat(pattern = "yyyy-MM-dd")
+    @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSZ")
     @Column(name="order_date")
     private Date orderDate;
 
@@ -55,6 +56,7 @@ public class Invoice {
     @Column(name="payment_type")
     private String paymentType;
 
+    @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL,mappedBy = "invoice")
     private Set<InvoiceDetail> invoiceDetail=new HashSet<>();
 

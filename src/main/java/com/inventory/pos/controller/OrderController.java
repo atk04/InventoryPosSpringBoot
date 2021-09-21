@@ -14,6 +14,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.text.ParseException;
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/order/")
@@ -36,6 +37,12 @@ public class OrderController {
     public ResponseEntity createInvoiceDetail(@RequestBody CreateInvoiceDetailRequest createInvoiceDetailRequest) throws ParseException {
         InvoiceDetail invoiceDetail=invoiceDetailService.createInvoiceDetail(createInvoiceDetailRequest);
         return ResponseEntity.status(HttpStatus.OK).body(new ResponseMessage("success"));
+    }
+
+    @GetMapping("orderList")
+    public List<Invoice> getAllOrderList(){
+        List<Invoice> invoiceList=this.invoiceService.getAllOrder();
+        return invoiceList;
     }
 
 

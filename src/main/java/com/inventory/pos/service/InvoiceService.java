@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.text.ParseException;
+import java.util.List;
 
 @Service
 public class InvoiceService {
@@ -26,6 +27,11 @@ public class InvoiceService {
       invoice=invoiceRepository.save(invoice);
 
         return invoice;
+    }
+
+    public List<Invoice> getAllOrder(){
+        List<Invoice> invoiceList=invoiceRepository.findAllByOrderByIdDesc();
+        return invoiceList;
     }
 
 }
