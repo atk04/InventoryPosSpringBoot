@@ -9,12 +9,14 @@ import com.inventory.pos.request.CreateInvoiceRequest;
 import com.inventory.pos.service.InvoiceDetailService;
 import com.inventory.pos.service.InvoiceService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.text.ParseException;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/order/")
@@ -40,9 +42,10 @@ public class OrderController {
     }
 
     @GetMapping("orderList")
-    public List<Invoice> getAllOrderList(){
-        List<Invoice> invoiceList=this.invoiceService.getAllOrder();
+    public Page<Invoice> getAllOrderList(@RequestParam Optional<Integer>page,@RequestParam Optional<Integer>size, @RequestParam Optional<String> sortBy){
+        Page<Invoice> invoiceList=this.invoiceService.getAllOrder(page,size,sortBy);
         return invoiceList;
+
     }
 
 

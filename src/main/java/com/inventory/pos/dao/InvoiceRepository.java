@@ -10,6 +10,5 @@ import java.util.List;
 @CrossOrigin("http://localhost:4200")
 @RepositoryRestResource(collectionResourceRel = "invoice",path="invoice")
 public interface InvoiceRepository extends JpaRepository<Invoice,Long> {
-    List<Invoice> findAllByOrderByIdDesc();
 }
 
