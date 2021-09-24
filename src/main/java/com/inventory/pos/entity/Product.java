@@ -1,5 +1,6 @@
 package com.inventory.pos.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.inventory.pos.request.CreateInvoiceDetailRequest;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -42,10 +43,12 @@ public class Product {
     @Column(name="image_url")
     private String imageUrl;
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name="category_id")
     private ProductCategory productCategory;
 
+    @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL,mappedBy = "product")
     private Set<InvoiceDetail> invoiceDetails=new HashSet<>();
 

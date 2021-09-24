@@ -1,5 +1,6 @@
 package com.inventory.pos.entity;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.inventory.pos.request.CreateInvoiceDetailRequest;
 import com.inventory.pos.request.InvoiceDetailItem;
 import lombok.Getter;
@@ -23,6 +24,7 @@ public class InvoiceDetail {
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
+
 
 
     @ManyToOne

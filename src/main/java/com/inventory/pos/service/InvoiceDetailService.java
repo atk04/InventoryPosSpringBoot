@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -40,5 +41,16 @@ Optional<Invoice> invoice=this.invoiceRepository.findById(invoiceId);
 
        invoiceDetailRepository.save(invoiceDetail);
        return invoiceDetail;
+    }
+
+    public List<InvoiceDetail> findAllByInvoiceId(Long id){
+        return invoiceDetailRepository.findAllByInvoiceId(id);
+    }
+
+    public String deleteInvoice(Long id){
+        Invoice invoice=invoiceRepository.findById(id).get();
+        String customerName=invoice.getCustomerName();
+        invoiceRepository.deleteById(id);
+        return customerName;
     }
 }

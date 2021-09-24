@@ -47,6 +47,19 @@ public class OrderController {
         return invoiceList;
 
     }
+    @GetMapping("findAllByInvoiceId")
+    public List<InvoiceDetail> findAllByInvoiceId(@RequestParam Long id){
+        return this.invoiceDetailService.findAllByInvoiceId(id);
+    }
+
+    @DeleteMapping("delete")
+    public ResponseEntity deleteInvoice(@RequestParam Long id){
+        System.out.println( id);
+        String result=invoiceDetailService.deleteInvoice(id);
+        return ResponseEntity.status(HttpStatus.OK).body(new ResponseMessage(result));
+    }
+
+
 
 
 }

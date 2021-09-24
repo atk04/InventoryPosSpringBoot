@@ -32,7 +32,7 @@ public class ProductCategoryController {
 }
 
 @DeleteMapping("delete")
-    public ResponseEntity deleteProductCategory(Long id){
+    public ResponseEntity deleteProductCategory(@RequestParam Long id){
     String result=productCategoryService.deleteProductCategory(id);
         return ResponseEntity.status(HttpStatus.OK).body(new ResponseMessage(result));
 }
