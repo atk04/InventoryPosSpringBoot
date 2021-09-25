@@ -38,13 +38,15 @@ public class ProductCategoryService {
     public String deleteProductCategory(Long id){
         ProductCategory category=productCategoryRepository.findById(id).get();
         String productCategoryName=category.getCategoryName();
-        productCategoryRepository.deleteById(id);
+
         List<Product> getAllProductByCategory = productService.getAllProductByCategoryId(id);
         
         for(int i=0;i<getAllProductByCategory.size();i++){
             String ImageName=getAllProductByCategory.get(i).getImageName();
+            System.out.println(ImageName);
             storageService.deleteProductImage(ImageName);
         }
+        productCategoryRepository.deleteById(id);
         return productCategoryName;
     }
 
