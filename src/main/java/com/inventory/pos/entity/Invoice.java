@@ -56,6 +56,7 @@ public class Invoice {
     @Column(name="payment_type")
     private String paymentType;
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name="company_id")
     private Company company;
@@ -65,16 +66,16 @@ public class Invoice {
     @OneToMany(cascade = CascadeType.ALL,mappedBy = "invoice")
     private Set<InvoiceDetail> invoiceDetail=new HashSet<>();
 
-    public Invoice(CreateInvoiceRequest createInvoiceRequest) throws ParseException {
-        this.customerName=createInvoiceRequest.getInvoice().getCustomerName();
-        this.orderDate=createInvoiceRequest.getInvoice().getOrderDate();
-        this.subTotal=createInvoiceRequest.getInvoice().getSubTotal();
-        this.tax=createInvoiceRequest.getInvoice().getTax();
-        this.discount=createInvoiceRequest.getInvoice().getDiscount();
-        this.total=createInvoiceRequest.getInvoice().getTotal();
-        this.paid=createInvoiceRequest.getInvoice().getPaid();
-        this.due=createInvoiceRequest.getInvoice().getDue();
-        this.paymentType=createInvoiceRequest.getInvoice().getPaymentType();
+    public Invoice(CreateInvoiceRequest createInvoiceRequest)  {
+        this.customerName=createInvoiceRequest.getCustomerName();
+        this.orderDate=createInvoiceRequest.getOrderDate();
+        this.subTotal=createInvoiceRequest.getSubTotal();
+        this.tax=createInvoiceRequest.getTax();
+        this.discount=createInvoiceRequest.getDiscount();
+        this.total=createInvoiceRequest.getTotal();
+        this.paid=createInvoiceRequest.getPaid();
+        this.due=createInvoiceRequest.getDue();
+        this.paymentType=createInvoiceRequest.getPaymentType();
     }
 
 

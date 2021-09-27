@@ -1,5 +1,6 @@
 package com.inventory.pos.service;
 
+import com.inventory.pos.dao.CompanyRepository;
 import com.inventory.pos.dao.InvoiceDetailRepository;
 import com.inventory.pos.dao.InvoiceRepository;
 import com.inventory.pos.entity.Company;
@@ -24,10 +25,14 @@ public class InvoiceService {
     @Autowired
     InvoiceRepository invoiceRepository;
 
+    @Autowired
+    CompanyRepository companyRepository;
 
-    public Invoice createInvoice(CreateInvoiceRequest createInvoiceRequest) throws ParseException {
+
+    public Invoice createInvoice(CreateInvoiceRequest createInvoiceRequest)  {
       Invoice invoice=new Invoice(createInvoiceRequest);
-      Company company=createInvoiceRequest.getCompany();
+
+      Company company=companyRepository.findById(createInvoiceRequest.getCompanyId()).get();
       invoice.setCompany(company);
       invoice=invoiceRepository.save(invoice);
 
