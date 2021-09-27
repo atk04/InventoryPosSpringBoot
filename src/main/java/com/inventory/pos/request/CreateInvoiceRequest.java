@@ -1,5 +1,7 @@
 package com.inventory.pos.request;
 
+import com.inventory.pos.entity.Company;
+import com.inventory.pos.entity.Invoice;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -9,13 +11,16 @@ import java.util.Date;
 @Getter
 @Setter
 public class CreateInvoiceRequest {
-    private String customerName;
-    private Date orderDate;
-    private BigDecimal subTotal;
-    private BigDecimal tax;
-    private BigDecimal discount;
-    private BigDecimal total;
-    private BigDecimal paid;
-    private BigDecimal due;
-    private String paymentType;
+    private Invoice invoice;
+    private Company company;
+
+//    private String customerName;
+//    private Date orderDate;
+//    private BigDecimal subTotal;
+//    private BigDecimal tax;
+//    private BigDecimal discount;
+//    private BigDecimal total;
+//    private BigDecimal paid;
+//    private BigDecimal due;
+//    private String paymentType;
 }
