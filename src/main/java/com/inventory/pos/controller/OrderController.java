@@ -6,6 +6,7 @@ import com.inventory.pos.entity.Invoice;
 import com.inventory.pos.entity.InvoiceDetail;
 import com.inventory.pos.request.CreateInvoiceDetailRequest;
 import com.inventory.pos.request.CreateInvoiceRequest;
+import com.inventory.pos.request.UpdateInvoiceRequest;
 import com.inventory.pos.service.InvoiceDetailService;
 import com.inventory.pos.service.InvoiceService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,6 +36,12 @@ public class OrderController {
         return new InvoiceResponse(invoice);
     }
 
+    @PutMapping("updateInvoice")
+    public InvoiceResponse updateInvoice(@RequestBody UpdateInvoiceRequest updateInvoiceRequest){
+        Invoice invoice=invoiceService.updateInvoice(updateInvoiceRequest);
+        return new InvoiceResponse(invoice);
+    }
+
     @PostMapping("createInvoiceDetail")
     public ResponseEntity createInvoiceDetail(@RequestBody CreateInvoiceDetailRequest createInvoiceDetailRequest) throws ParseException {
         InvoiceDetail invoiceDetail=invoiceDetailService.createInvoiceDetail(createInvoiceDetailRequest);
@@ -57,6 +64,11 @@ public class OrderController {
         System.out.println( id);
         String result=invoiceDetailService.deleteInvoice(id);
         return ResponseEntity.status(HttpStatus.OK).body(new ResponseMessage(result));
+    }
+
+    @DeleteMapping("deleteInvoiceDetail")
+    public void deleteInvoiceDetailByInvoiceId(@RequestParam Long id){
+        invoiceDetailService.deleteInvoiceDetailByInvoiceId(id);
     }
 
 

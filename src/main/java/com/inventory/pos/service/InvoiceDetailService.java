@@ -9,6 +9,7 @@ import com.inventory.pos.entity.Product;
 import com.inventory.pos.request.CreateInvoiceDetailRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -16,6 +17,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
+@Transactional
 @Service
 public class InvoiceDetailService {
 
@@ -47,10 +49,16 @@ Optional<Invoice> invoice=this.invoiceRepository.findById(invoiceId);
         return invoiceDetailRepository.findAllByInvoiceId(id);
     }
 
+
     public String deleteInvoice(Long id){
         Invoice invoice=invoiceRepository.findById(id).get();
         String customerName=invoice.getCustomerName();
         invoiceRepository.deleteById(id);
         return customerName;
+    }
+
+    public void deleteInvoiceDetailByInvoiceId(Long id){
+
+        invoiceDetailRepository.deleteAllByInvoiceId(id);
     }
 }

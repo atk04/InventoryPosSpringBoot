@@ -8,6 +8,7 @@ import com.inventory.pos.entity.Invoice;
 import com.inventory.pos.entity.InvoiceDetail;
 import com.inventory.pos.entity.Product;
 import com.inventory.pos.request.CreateInvoiceRequest;
+import com.inventory.pos.request.UpdateInvoiceRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -36,6 +37,25 @@ public class InvoiceService {
       invoice.setCompany(company);
       invoice=invoiceRepository.save(invoice);
 
+        return invoice;
+    }
+
+    public Invoice updateInvoice(UpdateInvoiceRequest updateInvoiceRequest){
+        Invoice invoice=invoiceRepository.findById(updateInvoiceRequest.getId()).get();
+        invoice.setCustomerName(updateInvoiceRequest.getCustomerName());
+        invoice.setOrderDate(updateInvoiceRequest.getOrderDate());
+        invoice.setSubTotal(updateInvoiceRequest.getSubTotal());
+        invoice.setTax(updateInvoiceRequest.getTax());
+        invoice.setDiscount(updateInvoiceRequest.getDiscount());
+        invoice.setTotal(updateInvoiceRequest.getTotal());
+        invoice.setPaid(updateInvoiceRequest.getPaid());
+        invoice.setDue(updateInvoiceRequest.getDue());
+        invoice.setPaymentType(updateInvoiceRequest.getPaymentType());
+
+        Company company=companyRepository.findById(updateInvoiceRequest.getCompanyId()).get();
+        invoice.setCompany(company);
+
+        invoiceRepository.save(invoice);
         return invoice;
     }
 
