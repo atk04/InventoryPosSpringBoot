@@ -45,7 +45,7 @@ public class InvoiceDetail {
     private BigDecimal productPrice;
 
     @Temporal(value = TemporalType.DATE)
-    @JsonFormat(pattern = "yyyy-MM-dd")
+    @JsonFormat(timezone = "UTC", pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSZ")
     @Column(name="order_date")
     private Date orderDate;
 
