@@ -223,6 +223,12 @@ public class ProductController {
         return ResponseEntity.status(HttpStatus.OK).body(new ResponseMessage(message));
     }
 
+    @PutMapping(value="updateProductWithoutImage")
+    public ResponseEntity updateProductWithoutImage(@RequestBody UpdateProductRequest updateProductRequest) {
+       String message = productService.updateProductWithoutImage(updateProductRequest);
+        return ResponseEntity.status(HttpStatus.OK).body(new ResponseMessage(message));
+    }
+
     @PutMapping(value = "updateStock")
     public ResponseEntity updateProductStock(@RequestBody UpdateProductStockRequest updateProductStockRequest){
         String message= productService.updateProductStock(updateProductStockRequest);

@@ -9,6 +9,7 @@ import com.inventory.pos.request.UpdateProductRequest;
 import com.inventory.pos.request.UpdateProductStockRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
 import java.util.Optional;
@@ -48,6 +49,24 @@ public class ProductService {
         String productName=updateProductRequest.getProduct().getName();
         productRepository.save(product.get());
         return productName;
+    }
+
+    public String updateProductWithoutImage(@RequestBody UpdateProductRequest updateProductRequest){
+        Long productId=updateProductRequest.getProduct().getId();
+        Optional<Product> product=productRepository.findById(productId);
+        product.get().setName(updateProductRequest.getProduct().getName());
+        product.get().setPurchasePrice(updateProductRequest.getProduct().getPurchasePrice());
+        product.get().setSalePrice(updateProductRequest.getProduct().getSalePrice());
+        product.get().setStock(updateProductRequest.getProduct().getStock());
+        product.get().setDescription(updateProductRequest.getProduct().getDescription());
+        ProductCategory productCategory=updateProductRequest.getCategory();
+        product.get().setProductCategory(productCategory);
+        String productName=updateProductRequest.getProduct().getName();
+        productRepository.save(product.get());
+
+
+        return productName;
+
     }
 
     public String updateProductStock(UpdateProductStockRequest updateProductStockRequest){
