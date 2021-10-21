@@ -96,5 +96,16 @@ CREATE TABLE IF NOT EXISTS `inventory-pos`.`invoice_detail` (
 ENGINE=InnoDB
 AUTO_INCREMENT = 1;
 
+-- -----------------------------------------------------
+-- Table `inventory-pos`.`sale`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `inventory-pos`.`sale` (
+  `id` BIGINT(20) NOT NULL AUTO_INCREMENT,
+  `total_sale` DECIMAL(13,2) DEFAULT NULL,
+  `order_date` DATE DEFAULT NULL,    
+  PRIMARY KEY (`id`))  
+ENGINE=InnoDB
+AUTO_INCREMENT = 1;
+
 
 
