@@ -49,6 +49,7 @@ Optional<Invoice> invoice=this.invoiceRepository.findById(invoiceId);
         return invoiceDetailRepository.findAllByInvoiceId(id);
     }
 
+    public List<InvoiceDetail>findAllByOrderDate(Date date){return invoiceDetailRepository.findAllByOrderDate(date);}
 
     public String deleteInvoice(Long id){
         Invoice invoice=invoiceRepository.findById(id).get();
@@ -61,4 +62,6 @@ Optional<Invoice> invoice=this.invoiceRepository.findById(invoiceId);
 
         invoiceDetailRepository.deleteAllByInvoiceId(id);
     }
+
+
 }

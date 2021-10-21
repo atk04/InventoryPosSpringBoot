@@ -43,7 +43,7 @@ public class ProductCategoryService {
         
         for(int i=0;i<getAllProductByCategory.size();i++){
             String ImageName=getAllProductByCategory.get(i).getImageName();
-            System.out.println(ImageName);
+            //System.out.println(ImageName);
             storageService.deleteProductImage(ImageName);
         }
         productCategoryRepository.deleteById(id);
