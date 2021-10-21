@@ -11,7 +11,7 @@ public class RepositoryConfig implements RepositoryRestConfigurer {
     public RepositoryRestConfigurer repositoryRestConfigurer()
     {
         return RepositoryRestConfigurer.withConfig(config -> {
-            config.exposeIdsFor(Company.class, ProductCategory.class, Product.class, Invoice.class, InvoiceDetail.class);
+            config.exposeIdsFor(Company.class, ProductCategory.class, Product.class, Invoice.class, InvoiceDetail.class,Sale.class);
         });
     }
 }

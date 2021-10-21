@@ -67,5 +67,8 @@ public class InvoiceService {
         );
 
     }
+    public List<Invoice>getRecentBuyer(){
+        return this.invoiceRepository.findTop5ByOrderByIdDesc();
+    }
 
 }
