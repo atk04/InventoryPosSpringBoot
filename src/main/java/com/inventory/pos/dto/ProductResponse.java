@@ -26,7 +26,7 @@ public class ProductResponse {
         this.salePrice=product.getSalePrice();
         this.stock=product.getStock();
         this.description=product.getDescription();
-        this.imageName=product.getImageName();
-        this.imageUrl=product.getImageUrl();
+//        this.imageName=product.getImageName();
+//        this.imageUrl=product.getImageUrl();
     }
 }

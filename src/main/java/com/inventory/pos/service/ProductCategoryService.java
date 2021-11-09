@@ -41,11 +41,11 @@ public class ProductCategoryService {
 
         List<Product> getAllProductByCategory = productService.getAllProductByCategoryId(id);
         
-        for(int i=0;i<getAllProductByCategory.size();i++){
-            String ImageName=getAllProductByCategory.get(i).getImageName();
-            //System.out.println(ImageName);
-            storageService.deleteProductImage(ImageName);
-        }
+//        for(int i=0;i<getAllProductByCategory.size();i++){
+//            String ImageName=getAllProductByCategory.get(i).getImageName();
+//            //System.out.println(ImageName);
+//            storageService.deleteProductImage(ImageName);
+//        }
         productCategoryRepository.deleteById(id);
         return productCategoryName;
     }

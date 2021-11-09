@@ -42,8 +42,8 @@ public class ProductService {
         product.get().setSalePrice(updateProductRequest.getProduct().getSalePrice());
         product.get().setStock(updateProductRequest.getProduct().getStock());
         product.get().setDescription(updateProductRequest.getProduct().getDescription());
-        product.get().setImageName(updateProductRequest.getProduct().getImageName());
-        product.get().setImageUrl(updateProductRequest.getProduct().getImageUrl());
+       // product.get().setImageName(updateProductRequest.getProduct().getImageName());
+       // product.get().setImageUrl(updateProductRequest.getProduct().getImageUrl());
         ProductCategory productCategory=updateProductRequest.getCategory();
         product.get().setProductCategory(productCategory);
         String productName=updateProductRequest.getProduct().getName();
@@ -77,11 +77,11 @@ public class ProductService {
         return "success";
     }
 
-    public void deleteProductImage(Long id){
-        Optional<Product> product=productRepository.findById(id);
-        //delete image from upload directory
-        storageService.deleteProductImage(product.get().getImageName());
-    }
+//    public void deleteProductImage(Long id){
+//        Optional<Product> product=productRepository.findById(id);
+//        //delete image from upload directory
+//        storageService.deleteProductImage(product.get().getImageName());
+//    }
 
 
 
@@ -90,9 +90,9 @@ public class ProductService {
     public String deleteProduct(Long id) {
         Product product=productRepository.findById(id).get();
         String productName=product.getName();
-        String ImageName=product.getImageName();
+       // String ImageName=product.getImageName();
         productRepository.deleteById(id);
-        storageService.deleteProductImage(ImageName);
+        //storageService.deleteProductImage(ImageName);
         return productName;
     }
 
